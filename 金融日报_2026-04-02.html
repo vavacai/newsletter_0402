@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金融日报 | 2026年4月2日</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    background: #0a0a0a;
+    color: #e8e0cc;
+    font-family: 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif;
+    font-size: 13px;
+    line-height: 1.7;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 12mm 14mm 10mm 14mm;
+    display: flex;
+    flex-direction: column;
+  }
+  /* 顶部装饰线 */
+  .top-bar {
+    height: 3px;
+    background: linear-gradient(90deg, #b8860b, #FFD700, #b8860b);
+    margin-bottom: 7mm;
+  }
+  /* 头部 */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5mm;
+    border-bottom: 1px solid #3a3000;
+    padding-bottom: 3mm;
+  }
+  .header-left .title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFD700;
+    letter-spacing: 4px;
+    text-shadow: 0 0 18px rgba(255, 215, 0, 0.4);
+  }
+  .header-left .subtitle {
+    font-size: 10px;
+    color: #a08030;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .header-right .date {
+    font-size: 13px;
+    color: #FFD700;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .header-right .edition {
+    font-size: 9px;
+    color: #6a5a20;
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+  /* 市场速览行情栏 */
+  .market-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 5mm;
+    flex-wrap: wrap;
+  }
+  .market-item {
+    background: #141200;
+    border: 1px solid #3a3000;
+    border-radius: 3px;
+    padding: 4px 10px;
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+  }
+  .market-item .m-label {
+    font-size: 9px;
+    color: #806820;
+    letter-spacing: 1px;
+  }
+  .market-item .m-value {
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .m-value.up { color: #ff4d4f; }
+  .m-value.down { color: #52c41a; }
+  .m-value.neutral { color: #FFD700; }
+  .market-item .m-change {
+    font-size: 9px;
+    margin-top: 1px;
+  }
+  .m-change.up { color: #ff7875; }
+  .m-change.down { color: #73d13d; }
+  .m-change.neutral { color: #a08030; }
+  /* 新闻条目 */
+  .news-section {
+    flex: 1;
+  }
+  .section-title {
+    font-size: 10px;
+    color: #806820;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 3mm;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #3a3000, transparent);
+  }
+  .news-item {
+    border-left: 3px solid #b8860b;
+    padding: 3mm 4mm;
+    margin-bottom: 3.5mm;
+    background: linear-gradient(90deg, #111000, #0a0a0a);
+    border-radius: 0 4px 4px 0;
+  }
+  .news-item:hover { border-left-color: #FFD700; }
+  .news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2px;
+  }
+  .news-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFD700;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    flex: 1;
+    text-decoration: none;
+  }
+  .news-title:hover { color: #fff8dc; text-decoration: underline; }
+  .news-tag {
+    font-size: 9px;
+    background: #3a2800;
+    color: #b8860b;
+    border: 1px solid #5a4000;
+    border-radius: 2px;
+    padding: 1px 5px;
+    margin-left: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .news-body {
+    font-size: 11.5px;
+    color: #c8bfa0;
+    line-height: 1.8;
+    margin-top: 2px;
+  }
+  .news-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+    font-size: 9px;
+    color: #5a4a1a;
+  }
+  .news-source a {
+    color: #7a6020;
+    text-decoration: none;
+  }
+  .news-source a:hover { color: #b8860b; }
+  /* 底部 */
+  .footer {
+    margin-top: 4mm;
+    padding-top: 3mm;
+    border-top: 1px solid #2a2000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-text {
+    font-size: 8px;
+    color: #3a2800;
+    letter-spacing: 1px;
+  }
+  .footer-logo {
+    font-size: 9px;
+    color: #5a4000;
+    letter-spacing: 2px;
+  }
+  .bottom-bar {
+    height: 2px;
+    background: linear-gradient(90deg, #b8860b, #FFD700, #b8860b);
+    margin-top: 5mm;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top-bar"></div>
+
+  <!-- 头部 -->
+  <div class="header">
+    <div class="header-left">
+      <div class="title">金融日报</div>
+      <div class="subtitle">FINANCIAL DAILY BRIEFING</div>
+    </div>
+    <div class="header-right">
+      <div class="date">2026年4月2日 · 星期四</div>
+      <div class="edition">VOL.2026-04-02 · 每日资讯简报</div>
+    </div>
+  </div>
+
+  <!-- 市场速览 -->
+  <div class="market-bar">
+    <div class="market-item">
+      <div class="m-label">上证指数</div>
+      <div class="m-value up">3,948.55</div>
+      <div class="m-change up">▲ +1.46%</div>
+    </div>
+    <div class="market-item">
+      <div class="m-label">创业板指</div>
+      <div class="m-value up">3,247.52</div>
+      <div class="m-change up">▲ +1.96%</div>
+    </div>
+    <div class="market-item">
+      <div class="m-label">恒生指数</div>
+      <div class="m-value up">+2.1%</div>
+      <div class="m-change up">▲ 大幅走强</div>
+    </div>
+    <div class="market-item">
+      <div class="m-label">纳斯达克</div>
+      <div class="m-value up">21,840.95</div>
+      <div class="m-change up">▲ +1.16%</div>
+    </div>
+    <div class="market-item">
+      <div class="m-label">现货黄金</div>
+      <div class="m-value neutral">$4,757</div>
+      <div class="m-change up">▲ +1.91%</div>
+    </div>
+    <div class="market-item">
+      <div class="m-label">WTI原油</div>
+      <div class="m-value down">$100.12</div>
+      <div class="m-change down">▼ -1.24%</div>
+    </div>
+  </div>
+
+  <!-- 今日要闻 -->
+  <div class="news-section">
+    <div class="section-title">今日要闻 · TOP 5</div>
+
+    <!-- 新闻1 -->
+    <div class="news-item">
+      <div class="news-header">
+        <a class="news-title" href="https://news.qq.com/rain/a/20260402A01DZM00" target="_blank">
+          美伊冲突缓和预期升温，全球风险资产全线反弹
+        </a>
+        <span class="news-tag">地缘政治</span>
+      </div>
+      <div class="news-body">
+        特朗普表示两到三周内将结束对伊朗战争，市场乐观情绪升温，美股迎来连续第二日上涨。科技七巨头录得近一年来最佳两日表现，纳斯达克盘中涨幅一度触及1.8%，谷歌涨超3%。存储芯片领涨，美光科技涨近9%，西部数据飙升10%。欧洲STOXX 600指数大涨2.5%，A股同步受提振开门红。
+      </div>
+      <div class="news-footer">
+        <span class="news-source">来源：<a href="https://news.qq.com/rain/a/20260402A01DZM00" target="_blank">华尔街见闻</a></span>
+        <span>2026-04-02 07:22</span>
+      </div>
+    </div>
+
+    <!-- 新闻2 -->
+    <div class="news-item">
+      <div class="news-header">
+        <a class="news-title" href="https://finance.sina.cn/headline/2026-04-02/detail-inhszyea2209078.d.html" target="_blank">
+          央行季度例会定调：继续实施适度宽松货币政策，加大逆周期调节
+        </a>
+        <span class="news-tag">央行政策</span>
+      </div>
+      <div class="news-body">
+        中国人民银行货币政策委员会2026年第一季度例会明确，将继续实施适度宽松的货币政策，加大逆周期和跨周期调节力度，发挥货币政策工具的总量与结构双重功能，降低融资中间费用，增强外汇市场韧性，旨在稳定市场预期，促进经济稳定增长和物价合理回升。
+      </div>
+      <div class="news-footer">
+        <span class="news-source">来源：<a href="https://finance.sina.cn/headline/2026-04-02/detail-inhszyea2209078.d.html" target="_blank">新浪财经·芝麻AI速递</a></span>
+        <span>2026-04-02 06:05</span>
+      </div>
+    </div>
+
+    <!-- 新闻3 -->
+    <div class="news-item">
+      <div class="news-header">
+        <a class="news-title" href="https://finance.sina.cn/headline/2026-04-02/detail-inhszyea2209078.d.html" target="_blank">
+          黄金突破4757美元/盎司创历史新高，交易逻辑从避险转向降息预期
+        </a>
+        <span class="news-tag">大宗商品</span>
+      </div>
+      <div class="news-body">
+        尽管美伊冲突缓和信号削弱避险需求，现货黄金价格逆势上涨1.91%至4757.17美元/盎司。市场分析认为，黄金定价逻辑正从地缘避险切换至美联储降息预期——通胀预期随地缘缓和趋于降温，交易者提前布局降息受益资产。10年期美债收益率维持在4.32%，与黄金同涨显示出市场对美国滞胀风险的持续警觉。
+      </div>
+      <div class="news-footer">
+        <span class="news-source">来源：<a href="https://finance.sina.cn/headline/2026-04-02/detail-inhszyea2209078.d.html" target="_blank">新浪财经</a></span>
+        <span>2026-04-02 06:05</span>
+      </div>
+    </div>
+
+    <!-- 新闻4 -->
+    <div class="news-item">
+      <div class="news-header">
+        <a class="news-title" href="https://news.qq.com/rain/a/20260402A01DZM00" target="_blank">
+          中国制造业PMI连续四月扩张，国债成全球资金"避风港"
+        </a>
+        <span class="news-tag">宏观经济</span>
+      </div>
+      <div class="news-body">
+        中国3月制造业PMI录得50.8，已连续四个月处于荣枯线以上，显示经济扩张势头稳固，但价格与供应链压力有所升温需持续关注。在全球债市受伊朗战争冲击之际，中国国债逆势走强，10年期收益率小幅下行至1.81%，中国资产的稳定性吸引全球配置资金流入。
+      </div>
+      <div class="news-footer">
+        <span class="news-source">来源：<a href="https://news.qq.com/rain/a/20260402A01DZM00" target="_blank">华尔街见闻</a></span>
+        <span>2026-04-02 07:22</span>
+      </div>
+    </div>
+
+    <!-- 新闻5 -->
+    <div class="news-item">
+      <div class="news-header">
+        <a class="news-title" href="https://finance.sina.cn/headline/2026-04-02/detail-inhszyea2209078.d.html" target="_blank">
+          SpaceX秘密递交IPO申请；礼来口服减肥药Foundayo获FDA批准
+        </a>
+        <span class="news-tag">公司动态</span>
+      </div>
+      <div class="news-body">
+        SpaceX已秘密向美国证监会递交IPO申请，上市进程正式启动，引发资本市场高度关注。另，礼来公司口服GLP-1减肥药Foundayo正式获得FDA批准，股价单日涨幅3.78%，Novo Nordisk等竞争对手股价承压。与此同时，OpenAI约6亿美元股份在二级市场遇冷，而Anthropic（Claude母公司）股份遭到抢购，AI赛道分化加剧。
+      </div>
+      <div class="news-footer">
+        <span class="news-source">来源：<a href="https://finance.sina.cn/headline/2026-04-02/detail-inhszyea2209078.d.html" target="_blank">新浪财经 / 华尔街见闻</a></span>
+        <span>2026-04-02</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer">
+    <span class="footer-text">⚠ 内容来源于公开财经资讯，仅供参考，不构成投资建议</span>
+    <span class="footer-logo">FINANCIAL DAILY · WorkBuddy</span>
+  </div>
+  <div class="bottom-bar"></div>
+</div>
+</body>
+</html>
